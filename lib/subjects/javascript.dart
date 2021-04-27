@@ -31,9 +31,10 @@ class PageState extends State {
 
   Widget _studyCard(BuildContext context) {
     return Container(
+        alignment: Alignment.center,
         height: 200.0,
-        child: ListView(
-            scrollDirection: Axis.horizontal,
+        child: Wrap(
+            // scrollDirection: Axis.horizontal,
             children: values
                 .map(
                   (value) => GestureDetector(
@@ -44,6 +45,7 @@ class PageState extends State {
                         Navigator.pushNamed(context, '/notes');
                       },
                       child: Container(
+                          height: 100.0,
                           width: MediaQuery.of(context).size.width * 0.4,
                           child: Card(
                               color: Colors.yellow[300], child: Text(value)))),
