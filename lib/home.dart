@@ -6,17 +6,19 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('FlashCards'),
-        ),
-        body: Container(
-          padding: const EdgeInsets.all(30.0),
-          child: Wrap(
-              spacing: 20.0,
-              children: subjects
-                  .map((subject) => subjectCards(context, subject))
-                  .toList()),
-        ));
+      appBar: AppBar(
+        title: Text('FlashCards'),
+      ),
+      body: SingleChildScrollView(
+          child: Container(
+        padding: const EdgeInsets.all(30.0),
+        child: Wrap(
+            spacing: 20.0,
+            children: subjects
+                .map((subject) => subjectCards(context, subject))
+                .toList()),
+      )),
+    );
   }
 
   Widget subjectCards(BuildContext context, String subject) {

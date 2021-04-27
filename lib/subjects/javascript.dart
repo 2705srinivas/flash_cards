@@ -23,30 +23,27 @@ class PageState extends State {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text('Javascript')),
-        body: Container(
-          child: _studyCard(context),
-        ));
+      appBar: AppBar(title: Text('Javascript')),
+      body: SingleChildScrollView(
+          child: Container(
+        child: _studyCard(context),
+      )),
+    );
   }
 
   Widget _studyCard(BuildContext context) {
     return Container(
         alignment: Alignment.center,
-        height: 200.0,
         child: Wrap(
-            // scrollDirection: Axis.horizontal,
             children: values
                 .map(
-                  (value) => GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          cardSelected = 2;
-                        });
-                        Navigator.pushNamed(context, '/notes');
-                      },
-                      child: Container(
-                          height: 100.0,
-                          width: MediaQuery.of(context).size.width * 0.4,
+                  (value) => Container(
+                      width: MediaQuery.of(context).size.width * 0.4,
+                      height: 100.0,
+                      child: GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(context, '/notes');
+                          },
                           child: Card(
                               color: Colors.yellow[300], child: Text(value)))),
                 )
