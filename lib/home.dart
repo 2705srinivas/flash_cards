@@ -1,6 +1,6 @@
+import 'package:flash_cards/notes/index.dart';
 import 'package:flutter/material.dart';
-
-const subjects = ['javascript', 'html', 'react'];
+import 'utils/StringUtils.dart';
 
 class Home extends StatelessWidget {
   @override
@@ -14,7 +14,7 @@ class Home extends StatelessWidget {
         padding: const EdgeInsets.all(30.0),
         child: Wrap(
             spacing: 20.0,
-            children: subjects
+            children: subjects.keys
                 .map((subject) => subjectCards(context, subject))
                 .toList()),
       )),
@@ -24,26 +24,20 @@ class Home extends StatelessWidget {
   Widget subjectCards(BuildContext context, String subject) {
     return Container(
         width: MediaQuery.of(context).size.width * 0.4,
-        height: 200,
+        height: 100,
         child: GestureDetector(
-          // onHorizontalDragStart: (details) {
-          //   print('Start');
-          //   print(details);
-          // },
-          // onHorizontalDragUpdate: (DragUpdateDetails details) {
-          //   print('update');
-          //   print(details);
-          // },
-          // onHorizontalDragEnd: (details) {
-          //   print('end');
-          //   print(details);
-          // },
           onTap: () {
-            Navigator.pushNamed(context, "/$subject");
+            print(subject);
+            Navigator.pushNamed(context, "/subjects",
+                arguments: {'subject': subject});
           },
           child: Card(
               color: Colors.yellow[300],
-              child: Text(subject, style: TextStyle(fontSize: 40.0))),
+              child: Container(
+                alignment: Alignment.center,
+                // padding: const EdgeInsets.all(30.0),
+                child: Text(subject.inCaps, style: TextStyle(fontSize: 30.0)),
+              )),
         ));
   }
 }

@@ -1,4 +1,4 @@
-const es6modules = """
+const es6 = """
 # Importing
 Imported values cannot be reassigned, though imported objects and arrays can be mutated (and the exporting module, and any other importers, will be affected by the mutation).  
 In that way, they behave similarly to const declarations.

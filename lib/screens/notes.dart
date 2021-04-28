@@ -1,13 +1,21 @@
+import 'package:flash_cards/notes/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
-import '../notes/javascript/es6modules.dart';
 
 class Notes extends StatefulWidget {
+  final String subject;
+  final String notes;
+
+  Notes(this.subject, this.notes);
   @override
-  PageState createState() => PageState();
+  PageState createState() => PageState(subject, notes);
 }
 
 class PageState extends State with TickerProviderStateMixin {
+  final String subject;
+  final String notes;
+
+  PageState(this.subject, this.notes);
   AnimationController _animation;
   initState() {
     super.initState();
@@ -20,7 +28,7 @@ class PageState extends State with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Javascript'),
+          title: Text(subjects[subject].name),
         ),
         body: ScaleTransition(
             scale: _animation,
@@ -28,7 +36,7 @@ class PageState extends State with TickerProviderStateMixin {
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height,
               decoration: BoxDecoration(color: Colors.yellow[300]),
-              child: Markdown(data: es6modules),
+              child: Markdown(data: subjects[subject].notes[notes][0]),
             )));
   }
 }

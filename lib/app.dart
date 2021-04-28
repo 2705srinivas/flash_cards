@@ -1,9 +1,7 @@
+import 'package:flash_cards/screens/modules.dart';
 import 'package:flutter/material.dart';
 import 'home.dart';
-import 'subjects/html.dart';
-import 'subjects/javascript.dart';
-import 'subjects/react.dart';
-import 'subjects/notes.dart';
+import 'screens/notes.dart';
 
 class App extends StatelessWidget {
   @override
@@ -15,22 +13,16 @@ class App extends StatelessWidget {
   RouteFactory _routes() {
     return (settings) {
       Widget screen;
-      // Map<String, dynamic> arguments = settings.arguments;
+      Map<String, dynamic> arguments = settings.arguments;
       switch (settings.name) {
         case "/":
           screen = Home();
           break;
-        case "/javascript":
-          screen = Javascript();
-          break;
-        case "/html":
-          screen = HTML();
-          break;
-        case "/react":
-          screen = React();
+        case "/subjects":
+          screen = Modules(arguments['subject']);
           break;
         case "/notes":
-          screen = Notes();
+          screen = Notes(arguments['subject'], arguments['note']);
           break;
       }
       return MaterialPageRoute(builder: (BuildContext context) => screen);
