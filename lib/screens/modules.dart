@@ -1,5 +1,6 @@
 import 'package:flash_cards/notes/index.dart';
 import 'package:flutter/material.dart';
+import './layout.dart';
 
 class Modules extends StatefulWidget {
   final String subject;
@@ -18,9 +19,9 @@ class PageState extends State {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text(subjects[subject].name)),
-      body: SingleChildScrollView(
+    return Layout(
+      subjects[subject].name,
+      SingleChildScrollView(
           child: Container(
         padding: const EdgeInsets.all(30.0),
         child: _studyCard(context, subject),

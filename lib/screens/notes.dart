@@ -1,6 +1,7 @@
 import 'package:flash_cards/notes/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
+import './layout.dart';
 
 class Notes extends StatefulWidget {
   final String subject;
@@ -26,11 +27,9 @@ class PageState extends State with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Text(subjects[subject].name),
-        ),
-        body: ScaleTransition(
+    return Layout(
+        subjects[subject].name,
+        ScaleTransition(
             scale: _animation,
             child: Container(
               width: MediaQuery.of(context).size.width,
